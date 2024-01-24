@@ -37,6 +37,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             [['role_id'], 'integer'],
+            ['role_id', 'default', 'value' => 1],
             [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name'], 'required'],
             [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name'], 'string', 'max' => 255],
             [['username'], 'unique'],
@@ -51,14 +52,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'role_id' => 'Role ID',
             'username' => 'Логин',
             'password' => 'Пароль',
             'email' => 'Email',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
-            'middle_name' => 'Middle Name',
+            'first_name' => 'Имя',
+            'last_name' => 'Фамилия',
+            'middle_name' => 'Отчество',
         ];
     }
 
@@ -77,10 +76,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * @return User
      */
-    /*    public function getRole()
+        public function getRole()
         {
             return $this->hasOne(Role::class, ['id' => 'role_id']);
-        }*/
+        }
     public static function findIdentity($id)
     {
         return static::findOne($id);
@@ -115,4 +114,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->password === md5($password);
     }
+
+    public function beforeSave($insert)
+    {
+        $this->password = md5($this->password);
+        return parent::beforeSave($insert);
+    }
 }
+
