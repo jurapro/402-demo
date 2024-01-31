@@ -17,6 +17,25 @@ class m240117_114736_create_status_table extends Migration
             'code' => $this->string()->notNull()->unique(),
             'name' => $this->string()->notNull(),
         ]);
+
+        $this->insert('{{%status}}',
+            [
+                'code' => 'new',
+                'name' => 'Новое',
+            ]);
+
+        $this->insert('{{%status}}',
+            [
+                'code' => 'approve',
+                'name' => 'Подтверждено',
+            ]
+        );
+        $this->insert('{{%status}}',
+            [
+                'code' => 'rejected',
+                'name' => 'Отклонено',
+            ]
+        );
     }
 
     /**

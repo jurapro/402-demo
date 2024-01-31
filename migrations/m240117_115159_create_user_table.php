@@ -24,6 +24,7 @@ class m240117_115159_create_user_table extends Migration
             'first_name' => $this->string()->notNull(),
             'last_name' => $this->string()->notNull(),
             'middle_name' => $this->string()->notNull(),
+            'phone' => $this->string()->notNull(),
         ]);
 
         // creates index for column `role_id`
@@ -42,6 +43,17 @@ class m240117_115159_create_user_table extends Migration
             'id',
             'CASCADE'
         );
+
+        $this->insert('{{%user}}', [
+            'role_id' => 2,
+            'username' => 'copp',
+            'password' => md5('password'),
+            'email' => 'admin@admin.ru',
+            'first_name' => 'Иван',
+            'last_name' => 'Иванов',
+            'middle_name' => 'Иванович',
+            'phone' => '+7(913)-999-99-99',
+        ]);
     }
 
     /**
