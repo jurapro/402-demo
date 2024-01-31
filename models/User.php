@@ -43,7 +43,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name', 'phone'], 'string', 'max' => 255],
             [['username'], 'unique'],
             [['email'], 'unique'],
+            [['email'], 'email'],
             [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['role_id' => 'id']],
+            [['first_name', 'last_name', 'middle_name'], 'match', 'pattern' => '/^[а-яА-ЯёЁ ]*$/u'],
+            //+7(XXX)-XXX-XX-XX
+            [['phone'], 'match', 'pattern' => '/^\+?7\(\d{3}\)\-\d{3}-\d{2}-\d{2}$/']
         ];
     }
 
