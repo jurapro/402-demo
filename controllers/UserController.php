@@ -81,6 +81,7 @@ class UserController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
+                \Yii::$app->getSession()->setFlash('success', 'Поздравляем! Вы успешно зарегистрировались!');
                 return $this->redirect(['site/login']);
             }
         } else {
