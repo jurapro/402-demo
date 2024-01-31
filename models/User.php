@@ -16,6 +16,7 @@ use yii\web\IdentityInterface;
  * @property string $first_name
  * @property string $last_name
  * @property string $middle_name
+ * @property string $phone
  *
  * @property Request[] $requests
  * @property Role $role
@@ -38,8 +39,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             [['role_id'], 'integer'],
             ['role_id', 'default', 'value' => 1],
-            [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name'], 'required'],
-            [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name'], 'string', 'max' => 255],
+            [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name', 'phone'], 'required'],
+            [['username', 'password', 'email', 'first_name', 'last_name', 'middle_name', 'phone'], 'string', 'max' => 255],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['role_id'], 'exist', 'skipOnError' => true, 'targetClass' => Role::class, 'targetAttribute' => ['role_id' => 'id']],
@@ -58,6 +59,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'first_name' => 'Имя',
             'last_name' => 'Фамилия',
             'middle_name' => 'Отчество',
+            'phone' => 'Телефон',
         ];
     }
 

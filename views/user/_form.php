@@ -24,6 +24,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'middle_name')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+
     <div class="form-group">
         <?= Html::submitButton('Зарегистрироваться', ['class' => 'btn btn-success']) ?>
     </div>
