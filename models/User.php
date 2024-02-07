@@ -72,20 +72,21 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      *
      * @return \yii\db\ActiveQuery
      */
-    /*    public function getRequests()
-        {
-            return $this->hasMany(Request::class, ['user_id' => 'id']);
-        }*/
+    public function getRequests()
+    {
+        return $this->hasMany(Request::class, ['user_id' => 'id']);
+    }
 
     /**
      * Gets query for [[Role]].
      *
      * @return User
      */
-        public function getRole()
-        {
-            return $this->hasOne(Role::class, ['id' => 'role_id']);
-        }
+    public function getRole()
+    {
+        return $this->hasOne(Role::class, ['id' => 'role_id']);
+    }
+
     public static function findIdentity($id)
     {
         return static::findOne($id);
@@ -125,6 +126,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         $this->password = md5($this->password);
         return parent::beforeSave($insert);
+    }
+
+    public function isAdmin()
+    {
+        return $this->role->code === 'admin';
     }
 }
 
