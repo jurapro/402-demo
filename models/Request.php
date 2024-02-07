@@ -34,6 +34,7 @@ class Request extends \yii\db\ActiveRecord
     {
         return [
             [['user_id', 'status_id'], 'integer'],
+            ['user_id', 'default', 'value' => \Yii::$app->user->identity->getId()],
             [['auto_number'], 'required'],
             [['text'], 'string'],
             [['created_at'], 'safe'],

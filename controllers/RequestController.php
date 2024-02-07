@@ -54,7 +54,7 @@ class RequestController extends Controller
             'query' => Request::find()->where(['user_id' => \Yii::$app->user->identity->getId()]),
 
             'pagination' => [
-                'pageSize' => 2
+                'pageSize' => 5
             ],
             'sort' => [
                 'defaultOrder' => [
@@ -93,7 +93,8 @@ class RequestController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                \Yii::$app->getSession()->setFlash('success', 'Заявление зарегистрировано!');
+                return $this->redirect(['index']);
             }
         } else {
             $model->loadDefaultValues();

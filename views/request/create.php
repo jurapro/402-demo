@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /** @var yii\web\View $this */
 /** @var app\models\Request $model */
 
-$this->title = 'Create Request';
-$this->params['breadcrumbs'][] = ['label' => 'Requests', 'url' => ['index']];
+$this->title = 'Формирование заявления';
+$this->params['breadcrumbs'][] = ['label' => 'Личный кабинет', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="request-create">
