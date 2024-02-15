@@ -132,5 +132,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->role->code === 'admin';
     }
+
+    public function getFullName()
+    {
+        //return "{$this->last_name} {$this->first_name} {$this->middle_name}";
+        return $this->last_name." ".$this->first_name." ".$this->middle_name;
+    }
 }
 
