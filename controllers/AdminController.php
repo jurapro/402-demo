@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\Request;
+use app\models\Status;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
@@ -57,8 +58,9 @@ class AdminController extends \yii\web\Controller
         $model = $this->findModel($id);
 
         if ($model->status->code==='new') {
-            $model->status_id = 2;
-            $model->save();
+            $model->link('status', Status::findOne(['code' => 'approve']));
+/*            $model->status_id = Status::findOne(['code' => 'approve'])->id;
+            $model->save();*/
         }
 
         return $this->redirect('index');
@@ -69,8 +71,9 @@ class AdminController extends \yii\web\Controller
         $model = $this->findModel($id);
 
         if ($model->status->code==='new') {
-            $model->status_id = 3;
-            $model->save();
+            $model->link('status', Status::findOne(['code' => 'rejected']));
+//            $model->status_id = Status::findOne(['code' => 'rejected'])->id;
+//            $model->save();
         }
 
         return $this->redirect('index');
