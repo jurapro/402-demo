@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Request;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;
+use yii\web\NotFoundHttpException;
 
 class AdminController extends \yii\web\Controller
 {
@@ -19,7 +20,7 @@ class AdminController extends \yii\web\Controller
                     'rules' => [
                         [
                             'allow' => true,
-                            'actions' => ['index'],
+                            'actions' => ['index', 'success', 'cancel'],
                             'roles' => ['@'],
                             'matchCallback' => function ($rule, $action) {
                                 return \Yii::$app->user->identity->isAdmin();
@@ -51,4 +52,36 @@ class AdminController extends \yii\web\Controller
         ]);
     }
 
+    public function actionSuccess($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->status->code==='new') {
+            $model->status_id = 2;
+            $model->save();
+        }
+
+        return $this->redirect('index');
+    }
+
+    public function actionCancel($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->status->code==='new') {
+            $model->status_id = 3;
+            $model->save();
+        }
+
+        return $this->redirect('index');
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Request::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
 }

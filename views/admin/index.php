@@ -27,6 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->user->getFullName();
                 },
             ],
+            [
+                'label' => 'Изменить статус',
+                'format' => 'html',
+                'value' => function ($data) {
+                    if ($data->status->code==='new') {
+                        return Html::a('Подтвердить', ['admin/success', 'id' => $data->id], ['class' => 'profile-link'])." ".
+                            Html::a('Отклонить', ['admin/cancel', 'id' => $data->id], ['class' => 'profile-link']);
+                    }
+                    return "Нельзя изменить статус";
+                },
+            ],
             'status.name',
             'auto_number',
             'text:ntext',
