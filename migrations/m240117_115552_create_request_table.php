@@ -24,14 +24,12 @@ class m240117_115552_create_request_table extends Migration
             'text' => $this->text(),
             'created_at' => $this->dateTime(),
         ]);
-
         // creates index for column `user_id`
         $this->createIndex(
             '{{%idx-request-user_id}}',
             '{{%request}}',
             'user_id'
         );
-
         // add foreign key for table `{{%user}}`
         $this->addForeignKey(
             '{{%fk-request-user_id}}',
@@ -41,14 +39,12 @@ class m240117_115552_create_request_table extends Migration
             'id',
             'CASCADE'
         );
-
         // creates index for column `status_id`
         $this->createIndex(
             '{{%idx-request-status_id}}',
             '{{%request}}',
             'status_id'
         );
-
         // add foreign key for table `{{%status}}`
         $this->addForeignKey(
             '{{%fk-request-status_id}}',

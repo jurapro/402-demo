@@ -54,6 +54,8 @@ $config = [
     ],
     'params' => $params,
     'language' => 'ru-RU',
+    'defaultRoute' => 'request',
+    'name'=>'«Нарушениям.Нет»'
 ];
 
 if (YII_ENV_DEV) {

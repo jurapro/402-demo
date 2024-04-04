@@ -26,14 +26,12 @@ class m240117_115159_create_user_table extends Migration
             'middle_name' => $this->string()->notNull(),
             'phone' => $this->string()->notNull(),
         ]);
-
         // creates index for column `role_id`
         $this->createIndex(
             '{{%idx-user-role_id}}',
             '{{%user}}',
             'role_id'
         );
-
         // add foreign key for table `{{%role}}`
         $this->addForeignKey(
             '{{%fk-user-role_id}}',
@@ -43,7 +41,6 @@ class m240117_115159_create_user_table extends Migration
             'id',
             'CASCADE'
         );
-
         $this->insert('{{%user}}', [
             'role_id' => 2,
             'username' => 'copp',
@@ -55,7 +52,6 @@ class m240117_115159_create_user_table extends Migration
             'phone' => '+7(913)-999-99-99',
         ]);
     }
-
     /**
      * {@inheritdoc}
      */

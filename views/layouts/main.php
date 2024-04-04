@@ -40,9 +40,6 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav'],
         'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
             ['label' => 'Регистрация', 'url' => ['/user/create'], 'visible' => Yii::$app->user->isGuest],
             ['label' => 'Личный кабинет', 'url' => ['/request/index'], 'visible' => !Yii::$app->user->isGuest],
             ['label' => 'Панель администратора', 'url' => ['/admin'], 'visible' => !Yii::$app->user->isGuest && Yii::$app->user->identity->isAdmin()],
